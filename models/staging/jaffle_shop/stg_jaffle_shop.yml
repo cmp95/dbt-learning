@@ -2,13 +2,13 @@ version: 2
 
 models:
   - name: stg_customers
-    columns:
+    columns: 
       - name: customer_id
         tests:
           - unique
           - not_null
   - name: stg_orders
-    columns:
+    columns: 
       - name: order_id
         tests:
           - unique
@@ -17,11 +17,13 @@ models:
         tests:
           - accepted_values:
               values:
-                - shipped
                 - completed
-                - return_pending
+                - shipped
                 - returned
                 - placed
-          
-          
-          
+                - return_pending
+      - name: customer_id
+        tests:
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
